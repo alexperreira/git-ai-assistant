@@ -1,0 +1,21 @@
+{
+  "name": "git-ai-assistant",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "description": "",
+  "dependencies": {
+    "dotenv": "^16.5.0",
+    "openai": "^5.5.1",
+    "simple-git": "^3.28.0"
+  },
+  "devDependencies": {
+    "prettier": "^3.5.3"
+  }
+}
