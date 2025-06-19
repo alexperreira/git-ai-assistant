@@ -2,6 +2,7 @@ import simpleGit from 'simple-git';
 import dotenv from 'dotenv';
 import { OpenAI } from 'openai/client.js';
 import { Command } from 'commander';
+import chalk from 'chalk';
 
 dotenv.config({ path: new URL('.env', import.meta.url).pathname });
 
@@ -23,7 +24,7 @@ async function getRecentCommits(limit) {
         return log.all.map(commit => `- ${commit.message} (${commit.hash.substring(0, 7)})`).join('\n');
     } catch (err) {
         if (err.message.includes('not a git repository')) {
-            console.error('Error: Not a Git repository! Please run this inside a project with Git commits or initialize a new repository');
+            console.error(chalk.red('🚫 Error: Not a Git repository! Please run this inside a project with Git commits or initialize a new repository'));
             process.exit(1);
         } else {
             throw err;
@@ -52,12 +53,12 @@ async function generateSummary(commitText, model) {
 }
 
 (async () => {
-    console.log(`Fetching last ${options.last} commits...`);
+    console.log(chalk.blueBright(`Fetching last ${options.last} commits...`));
     const commits = await getRecentCommits(options.last);
     console.log(commits);
 
-    console.log(`\nGenerating AI summary using model ${options.model}...`);
+    console.log(chalk.greenBright(`\nGenerating AI summary using model ${options.model}...`));
     const summary = await generateSummary(commits, options.model);
-    console.log('\n--- AI Summary ---');
+    console.log(chalk.yellowBright('\n--- AI Summary ---'));
     console.log(summary);
 })();
