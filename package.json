@@ -11,6 +11,7 @@
   "type": "module",
   "description": "",
   "dependencies": {
+    "commander": "^14.0.0",
     "dotenv": "^16.5.0",
     "openai": "^5.5.1",
     "simple-git": "^3.28.0"
